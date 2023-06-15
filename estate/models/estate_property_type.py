@@ -1,6 +1,6 @@
 from odoo import fields, models
 
-class EstateType(models.Model):
+class EstatePropertyType(models.Model):
     _name = "estate.property.type"
     _description = "Reals Estate Property Type"
 

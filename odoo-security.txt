@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patient, access.hospital.patient,hospital.model_hospital_patient,base.group_user,1,1,1,1
+
+## name of the model, name of the folder.name of the model, name of the folder.name of the table, base.group_user, True, True, True, True
+
+## This is how you add security in odoo
