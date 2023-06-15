@@ -1,0 +1,64 @@
+## Install & Configure Odoo using VSCode and Ubuntu 22.04.2 LTS
+
+## Clone with SSH
+# Create empty folder/directory
+git clone git@github.com:odoo/odoo.git --depth 1 --branch 16.0 . # The "." will clone odoo16 to current directory, make sure the directory is empty
+
+## Check if python is installed
+python3 --version
+pip3 --version
+
+## Create Virtual Environment
+python3 -m venv .venv # create virtual environment
+. .venv/bin/activate # activate virtual environment
+
+## PostgreSQL
+sudo -u postgres createuser -s $USER
+createdb $USER
+
+sudo apt install postgresql postgresql-client
+sudo su - postgres -c "createuser -s userrealstate"
+sudo su postgres
+psql
+alter role userrealstate with password 'Banana_123';
+exit
+
+## Dependencies
+sudo apt install python3-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev \
+    libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev libfreetype6-dev \
+    liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev libpq-dev
+
+## Requirements
+pip3 install setuptools wheel
+pip3 install -r requirements.txt
+
+## install wkhtmltopdf
+## link https://github.com/wkhtmltopdf/wkhtmltopdf/releases/tag/0.12.5
+## link https://askubuntu.com/questions/1403619/mongodb-install-fails-on-ubuntu-22-04-depends-on-libssl1-1-but-it-is-not-insta
+echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
+sudo apt-get install libssl1.1
+sudo apt install ./wkhtmltox_0.12.5-1.bionic_amd64.deb
+** sudo rm /etc/apt/sources.list.d/focal-security.list
+
+
+## Edit debian/odoo.conf
+[options]
+; This is the password that allows database operations:
+; admin_passwd = admin
+db_host = localhost
+db_port = False
+db_user = userrealstate
+db_password = Banana_123
+;addons_path = /usr/lib/python3/dist-packages/odoo/addons
+addons_path = odoo/addons
+default_productivity_apps = True
+
+
+## Running Odoo
+python3 odoo-bin --addons-path=addons -d dbrealstate
+else force it 
+python3 odoo-bin --addons-path=addons -i dbrealstate
+
+
+## Browser
+http://localhost:8069

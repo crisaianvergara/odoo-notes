@@ -1,0 +1,4 @@
+psql -U username -d database_name -f dump_file.sql
+
+psql -U cris-aian -d dbphpos -f dump.sql
+## make sure to open the terminal on the current directory of the sql file

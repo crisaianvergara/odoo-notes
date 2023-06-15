@@ -1,0 +1,27 @@
+## Create a Module using Scaffold
+mkdir customaddons
+./odoo-bin scaffold estate customaddons # create custom module using scaffold in customaddons direcetory
+
+
+# Restart odoo server
+python3 odoo-bin --addons-path=addons,customaddons -d dbrealstate
+
+
+# Reload browser
+# Go to apps, click Update Apps List then Update
+
+
+## Running odoo by upgrade customaddons estate and hospital
+python3 odoo-bin --addons-path=addons,customaddons -d dbrealstate -u estate,hospital
+
+
+## Open specific database and table
+psql -d dbrealstate # open dbrealstate
+select count(*) from estate_property; # open estate_property_table
+
+## Run: Upgrade both estate and hospital module
+
+python3 odoo-bin --addons-path=addons,customaddons -d dbrealstate -u estate,hospital,awb_pos_service_charge
+
+## In order to avoid relaunching the server every time you do a modification to the view, it can be convenient to use the --dev xml parameter when launching the server:
+python3 odoo-bin --addons-path=addons,customaddons -d dbrealstate -u estate,hospital --dev xml
