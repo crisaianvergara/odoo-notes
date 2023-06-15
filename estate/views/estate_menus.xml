@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu -->
+    <!-- Menu Level 1 -->
+    <menuitem id="menu_estate_root" name="Real State">
+        <!-- Advertisements -->
+        <!-- Menu Level 2 -->
+        <menuitem id="estate_advertismenets_menu" name="Advertiements" sequence="5">
+            <!-- Menu Level 3 -->
+            <menuitem id="estate_property_menu_action" action="estate_property_action" sequence="5"/>
+        </menuitem>
+        <!-- Settings -->
+        <menuitem id="estate_settings_menu" name="Settings" sequence="10">
+            <menuitem id="estate_property_type_menu_action" action="estate_property_type_action" sequence="5"/>
+        </menuitem>
+    </menuitem>
+</odoo>
