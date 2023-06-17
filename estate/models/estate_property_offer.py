@@ -21,9 +21,14 @@ class EstatePropertyOffer(models.Model):
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one("estate.property", string="Property", required=True)
 
+
     # Computed fields
     validity = fields.Integer("Validity (days)", default=7)
     date_deadline = fields.Date("Deadline", compute="_compute_date_deadline", inverse="_inverse_date_deadline")
+    # Constraints
+    _sql_constraints = [
+        ("check_price", "CHECK(price > 0)", "The offer price must be strictly positive"),
+    ]
 
     @api.depends("create_date", "validity")
     def _compute_date_deadline(self):
@@ -39,7 +44,7 @@ class EstatePropertyOffer(models.Model):
     # Actions
     def action_accept(self):
         if "accepted" in self.mapped("property_id.offer_ids.state"):
-            raise UserError("An offer as already been accepted.")
+            raise UserError("An offer has already been accepted.")
         self.write(
             {
                 "state": "accepted",
@@ -59,6 +64,9 @@ class EstatePropertyOffer(models.Model):
                 "state": "refused",
             }
         )
+    
+
+    
         
 
 
