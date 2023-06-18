@@ -7,6 +7,7 @@ from odoo.tools import float_compare, float_is_zero
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Real Estate Property"
+    _order = "id desc"
 
     def _default_date_availability(self):
         """Show availability date in 3 months from today"""
