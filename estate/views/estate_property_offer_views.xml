@@ -25,7 +25,7 @@
         <field name="name">estate.property.offer.tree</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <tree string="Offers">
+            <tree string="Offers" editable="bottom" decoration-success="state == 'accepted'" decoration-danger="state == 'refused'">
                 <field name="price" />
                 <field name="partner_id" />
                 <field name="validity" />
@@ -35,5 +35,12 @@
                 <field name="state" />
             </tree>
         </field>
+    </record>
+
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">Property Offers</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="domain">[('property_type_id','=', active_id)]</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>
