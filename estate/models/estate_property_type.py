@@ -36,3 +36,5 @@ class EstatePropertyType(models.Model):
         res = self.env.ref("estate.estate_property_offer_action").read()[0]
         res["domain"] = [("id", "in", self.offer_ids.ids)]
         return res
+    
+    
